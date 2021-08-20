@@ -3,6 +3,9 @@ $(document).ready(function () {
     let floorPath = $('.home-image path');
     let counterUp = $('.counter-up');
     let counterDown = $('.counter-down');
+    let modal = $('.modal');
+    let viewFlatsButton = $('.view-flats');
+    let modalCloseButton = $('.modal-close-button');
     // фунция при наведении на етаж
     floorPath.on('mouseover', function() {
         floorPath.removeClass("current-floor");// удаляем активный клас у этажей
@@ -10,6 +13,9 @@ $(document).ready(function () {
         $('.counter').text(currentFloor);
     });
 
+    floorPath.on('click', toggelModal);
+    modalCloseButton.on('click', toggelModal);
+    viewFlatsButton.on('click', toggelModal);
     counterUp.on("click", function () {
         //отслеживаем по клику на стрелку вверх
         if (currentFloor < 18) {
@@ -29,5 +35,9 @@ $(document).ready(function () {
             floorPath.removeClass("current-floor");
             $(`[data-floor=${usCurrentFloor}]`).toggleClass("current-floor");
         }
-    })
+    });
+    function toggelModal() {
+        // открыть , закрыть модалку
+        modal.toggleClass('is-open');
+    }
 });    
